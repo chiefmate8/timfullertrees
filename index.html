@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T Fuller Arborist | Tree Care Hertfordshire, Essex & South Cambridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:    #1e3a2f;
+      --moss:      #2d5a3d;
+      --leaf:      #4a7c59;
+      --bark:      #6b4c2a;
+      --cream:     #f5f0e8;
+      --parchment: #ede5d0;
+      --text:      #1a1a18;
+      --muted:     #5a5a4a;
+      --gold:      #c8a84b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(30, 58, 47, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      border-bottom: 1px solid rgba(200,168,75,0.25);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--cream);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(245,240,232,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(10,25,18,0.65) 0%, rgba(20,45,30,0.5) 60%, rgba(30,58,47,0.85) 100%),
+        url('hero-bg.jpg') center center / cover no-repeat;
+      background-color: var(--forest); /* fallback if no image */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative tree ring pattern behind hero text */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,168,75,0.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,168,75,0.12);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; max-width: 760px; }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,168,75,0.5);
+      padding: 6px 18px;
+      margin-bottom: 1.8rem;
+      font-weight: 700;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(245,240,232,0.82);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--forest);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 40px;
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+    .hero-cta:hover { background: #ddbf66; transform: translateY(-2px); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+      padding: 90px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--forest);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .about-text p strong { color: var(--forest); font-weight: 700; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-box {
+      background: var(--forest);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: rgba(245,240,232,0.75);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      background: var(--parchment);
+      padding: 90px 5%;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--forest);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: rgba(30,58,47,0.12);
+      max-width: 1100px;
+      margin: 0 auto;
+      border: 1px solid rgba(30,58,47,0.12);
+    }
+
+    .service-card {
+      background: var(--cream);
+      padding: 36px 30px;
+      position: relative;
+      transition: background 0.25s;
+    }
+
+    .service-card:hover { background: var(--forest); }
+    .service-card:hover .service-title,
+    .service-card:hover .service-icon,
+    .service-card:hover li { color: var(--cream); }
+    .service-card:hover .service-icon { color: var(--gold); }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      color: var(--leaf);
+      transition: color 0.25s;
+    }
+
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--forest);
+      margin-bottom: 12px;
+      transition: color 0.25s;
+    }
+
+    .service-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-card li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 3px 0;
+      transition: color 0.25s;
+    }
+
+    .service-card li::before {
+      content: '–  ';
+      color: var(--gold);
+    }
+
+    /* ── WOOD & CHIP ── */
+    .extras {
+      background: var(--forest);
+      padding: 50px 5%;
+      text-align: center;
+    }
+
+    .extras p {
+      color: rgba(245,240,232,0.8);
+      font-size: 0.95rem;
+      max-width: 700px;
+      margin: 0 auto 0.5rem;
+    }
+
+    .extras strong { color: var(--gold); }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 90px 5%;
+      background: var(--cream);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .contact-section .section-header { margin-bottom: 40px; }
+
+    .form-note {
+      background: var(--parchment);
+      border-left: 3px solid var(--gold);
+      padding: 14px 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .form-note a { color: var(--moss); }
+
+    form { display: grid; gap: 18px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 6px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background: #fff;
+      border: 1px solid rgba(30,58,47,0.2);
+      padding: 13px 16px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--leaf);
+    }
+
+    textarea { resize: vertical; min-height: 130px; }
+
+    .submit-btn {
+      background: var(--forest);
+      color: var(--cream);
+      border: none;
+      padding: 16px 44px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      width: fit-content;
+    }
+
+    .submit-btn:hover { background: var(--moss); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f1f17;
+      padding: 40px 5%;
+      text-align: center;
+      color: rgba(245,240,232,0.4);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer strong { color: rgba(245,240,232,0.7); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">T Fuller Arborist</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Est. Over 25 Years</div>
+      <h1>T Fuller<br><span>Arborist</span></h1>
+      <p class="hero-tagline">Specialising in all aspects of tree care across Hertfordshire, Essex and South Cambridge.</p>
+      <a href="#contact" class="hero-cta">Request a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-text">
+      <h2>A Trusted Family Business, Rooted in the Region</h2>
+      <p>We are a small tree surgery company based in East Hertfordshire, operating in Hertfordshire itself, as well as Essex and South Cambridge, covering a <strong>20 mile radius of Bishop's Stortford</strong>.</p>
+      <p>The family business has been going for over 25 years and is run by <strong>Tim Fuller</strong>, who has over 39 years' experience in all aspects of tree care.</p>
+      <p>We pride ourselves on high standards and a well-established reputation, with clients returning year after year due to the friendly and reliable service we offer. We are always happy to offer friendly advice on any tree-related problem.</p>
+      <p><strong>Contact us to arrange a free tree work quotation!</strong></p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-number">39+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">25+</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">20mi</div>
+        <div class="stat-label">Operating Radius</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">Free</div>
+        <div class="stat-label">Quotations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="section-header">
+      <span class="section-label">What We Do</span>
+      <h2>Our Services</h2>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <div class="service-title">Tree Planting</div>
+        <ul>
+          <li>From whips to semi-mature stock</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🪵</div>
+        <div class="service-title">Stump Removal</div>
+        <ul>
+          <li>Hand grubbing</li>
+          <li>Stump grinding</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🌲</div>
+        <div class="service-title">Tree Removal</div>
+        <ul>
+          <li>Felling</li>
+          <li>Sectional felling</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">✂️</div>
+        <div class="service-title">Tree Surgery</div>
+        <ul>
+          <li>Formative pruning</li>
+          <li>Crown reduction</li>
+          <li>Crown thinning</li>
+          <li>Crown lifting</li>
+          <li>Crown cleaning</li>
+          <li>Non-invasive bracing systems</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXTRAS STRIP -->
+  <div class="extras">
+    <p><strong>Wood &amp; wood chip mulch</strong> supplied in bulk or available for collection.</p>
+    <p>Phone <strong>01279 771975</strong> for details.</p>
+    <p style="margin-top:10px; font-size:0.8rem;">All works carried out to <strong>BS3998:2010 Tree Work – Recommendations</strong>.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-header">
+      <span class="section-label">Get in Touch</span>
+      <h2>Request a Free Quotation</h2>
+    </div>
+
+    <!-- ⚠️  SETUP INSTRUCTION:
+         1. Go to https://formspree.io and sign up for a free account (covers 50 submissions/month).
+         2. Create a new form and copy your unique form ID.
+         3. Replace YOUR_FORM_ID below with that ID, e.g. action="https://formspree.io/f/xpznkwvr"
+    -->
+    <div class="form-note">
+      📬 <strong>Form setup needed:</strong> Replace <code>YOUR_FORM_ID</code> in the HTML with your <a href="https://formspree.io" target="_blank">Formspree</a> form ID before going live. Free tier covers 50 submissions/month.
+    </div>
+
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+      <div class="form-row">
+        <div>
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="07700 900000" />
+        </div>
+      </div>
+
+      <div>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+      </div>
+
+      <div>
+        <label for="service">Service Required</label>
+        <select id="service" name="service">
+          <option value="">— Please select —</option>
+          <option>Tree Planting</option>
+          <option>Stump Removal</option>
+          <option>Tree Removal</option>
+          <option>Tree Surgery / Pruning</option>
+          <option>Wood / Wood Chip</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="message">Details / Message</label>
+        <textarea id="message" name="message" placeholder="Please describe what you need, including your location and any relevant details…"></textarea>
+      </div>
+
+      <!-- Honeypot spam trap (hidden from humans, catches bots) -->
+      <input type="text" name="_gotcha" style="display:none" />
+
+      <button type="submit" class="submit-btn">Send Enquiry</button>
+
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>T Fuller Arborist</strong> · Bishop's Stortford, East Hertfordshire</p>
+    <p style="margin-top:6px;">Tel: <strong>01279 771975</strong> · All works to BS3998:2010</p>
+    <p style="margin-top:12px;">© 2025 T Fuller Arborist. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
